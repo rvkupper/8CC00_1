@@ -1,4 +1,4 @@
-"""Some text on this script
+"""Some text on this script (RMA = Rombust Multi-array Averages)
 """
 
 class CellLineRMAExpression:
@@ -27,8 +27,6 @@ class CellLineRMAExpression:
         
         nrGenes = len(lines[0])
         
-        # catch non-existant cell lines 
-        # assert cellLine in lines.split(','), 'inserted cell line not found'
         genes = None
         cellLineIndex = 0
         
