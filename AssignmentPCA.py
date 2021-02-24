@@ -3,6 +3,8 @@
 
 import CellLineRMAExpression as clre
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+import numpy as np
 
 class AssignmentPCA:
     """Class for principal component analysis of the CellLineRMAExpression data.
@@ -67,9 +69,27 @@ class AssignmentPCA:
         plt.title(title)
         plt.show()
         
+    def covariance(self, param1: list, param2: list) -> list:
+        """return the covariance of parameters on param1 and param2.
+        """
+        n = len(param1)
+        
+        mean1 = np.mean(param1)
+        mean2 = np.mean(param2)
+        print(mean1)
+        
+        arr1 = np.array(param1)
+        arr2 = np.array(param2)
+        print(arr1)
+        
+        arr1_diff = arr1 - mean1
+        arr2_diff = arr2 - mean2
+        print(arr1_diff)
+        
+        multiplied = arr1_diff * arr2_diff
+        sumMultiplied = sum(multiplied)
+        covar = sumMultiplied/(n - 1.0)
+        
+        return covar
         
     
-    
-l = [1, 3, 5, 11, 0, 4]    
-pca = AssignmentPCA()
-pca.plotCumulativeMovingAverage(l)
