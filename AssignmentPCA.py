@@ -2,6 +2,7 @@
 """
 
 import CellLineRMAExpression as clre
+import matplotlib.pyplot as plt
 
 class AssignmentPCA:
     """Class for principal component analysis of the CellLineRMAExpression data.
@@ -44,9 +45,31 @@ class AssignmentPCA:
                         
         return rmaExpressions
     
+    def cumulativeMovingAverage(self, x: list) -> list:
+        """return a list of the cumulative moving average of input parameterlist x.
+        """
+        N = len(x)
+        C = [0] * (N + 1)
+        
+        for n in range(len(x)):
+            C[n + 1] = C[n] + (x[n] - C[n])/(n + 1)
+            
+        C.pop(0) # remove leading 0
+        
+        return C   
+        
+    def plotCumulativeMovingAverage(self, x: list, title: str = "Cumulative moving average") -> None:
+        """plot the cumulative moving average of a list x
+        """
+        plt.plot(x)
+        plt.xlabel('index')
+        plt.ylabel('cumulative moving average')
+        plt.title(title)
+        plt.show()
+        
+        
     
     
-    
+l = [1, 3, 5, 11, 0, 4]    
 pca = AssignmentPCA()
-expressions = pca.readRMAExpressionAssigned()
-print(len(expressions[0]))
+pca.plotCumulativeMovingAverage(l)
