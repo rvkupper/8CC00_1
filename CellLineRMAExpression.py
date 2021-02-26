@@ -1,11 +1,12 @@
 """Some text on this script (RMA = Rombust Multi-array Averages)
 """
 
+import numpy as np
+
+
 class CellLineRMAExpression:
     """class for analysis of cancer data.
     """
-    # class variables
-    
     
     # instance variables
     def __init__(self, type: str):
@@ -42,8 +43,19 @@ class CellLineRMAExpression:
             genes[j] = float(genes[j])
         
         return genes
+    
+    def cancerType(self, cellLine: str) -> str:
+        """return the name of the cancer type for a given cell line.
+        """
+        data = []
+        with open("data/GDSC_metadata.csv") as f:
+          for line in f:
+            line_n = line.rstrip('\n')
+            data.append(line_n.split(',')[1:])
+        data.pop(0)
+        metadata = np.array(data)
+        location = np.where(metadata.T[0] == cellLine)
+        cancer = metadata.T[2][location]
+        cancer = cancer[0]
+        return cancer
         
-        
-someCellLine = CellLineRMAExpression('something')
-genen = someCellLine.readRMAExpression('HT-29')
-print(len(genen))
