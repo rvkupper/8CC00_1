@@ -31,6 +31,14 @@ for i in range(len(normData.T)):
 
 covMatData = np.array(covData)
 
+# Calculate eigenvectors and eigenvalues
+eigVals, eigVecs = np.linalg.eig(covMatData)
+
+# Make a list of (eigenvalue, eigenvector) tuples
+eigPairs = [(np.abs(eigVals[i]), eigVecs[:,i]) for i in range(len(eigVals))]
+
+# Sort the (eigenvalue, eigenvector) tuples from high to low
+eigPairs.sort(key=lambda x: x[0], reverse=True)
 
 
 
