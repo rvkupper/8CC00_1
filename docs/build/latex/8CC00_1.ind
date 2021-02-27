@@ -1,0 +1,50 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter A
+  \item \spxentry{AssignmentPCA}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{AssignmentPCA}\spxextra{class in AssignmentPCA}, \hyperpage{1}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{calcLoads()}\spxextra{AssignmentPCA.AssignmentPCA method}, \hyperpage{1}
+  \item \spxentry{cancerType()}\spxextra{CellLineRMAExpression.CellLineRMAExpression method}, 
+		\hyperpage{2}
+  \item \spxentry{CellLineRMAExpression}
+    \subitem \spxentry{module}, \hyperpage{2}
+  \item \spxentry{CellLineRMAExpression}\spxextra{class in CellLineRMAExpression}, \hyperpage{2}
+  \item \spxentry{covariance()}\spxextra{AssignmentPCA.AssignmentPCA method}, \hyperpage{1}
+  \item \spxentry{cumulativeMovingAverage()}\spxextra{AssignmentPCA.AssignmentPCA method}, 
+		\hyperpage{1}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{listOfCellLineNumbers}\spxextra{AssignmentPCA.AssignmentPCA attribute}, 
+		\hyperpage{2}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{main}
+    \subitem \spxentry{module}, \hyperpage{3}
+  \item \spxentry{module}
+    \subitem \spxentry{AssignmentPCA}, \hyperpage{1}
+    \subitem \spxentry{CellLineRMAExpression}, \hyperpage{2}
+    \subitem \spxentry{main}, \hyperpage{3}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{plotCumulativeMovingAverage()}\spxextra{AssignmentPCA.AssignmentPCA method}, 
+		\hyperpage{2}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{readRMAExpression()}\spxextra{CellLineRMAExpression.CellLineRMAExpression method}, 
+		\hyperpage{2}
+  \item \spxentry{readRMAExpressionAssigned()}\spxextra{AssignmentPCA.AssignmentPCA method}, 
+		\hyperpage{2}
+
+\end{sphinxtheindex}
