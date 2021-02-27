@@ -13,15 +13,19 @@ class CellLineRMAExpression:
         self.type = type
         
     def readRMAExpression(self, cellLine: str) -> list:
-        """Read the RMA expression of a single cell line cellLine
+        """Read the RMA expression of a single cell line.
         
-        parameters:
-        cellLine: String, cell line from which the RMA expression is to be read 
+        Assumption: cellLine in dataset.
         
-        returns:
-        genes: list of RMA expressions of all 244 genes of cellLine.
+        :param cellLine: String, cell line from which the RMA expression is to be read.
+        :return: list of RMA expressions of all 244 genes of cellLine, or None if cellLine does not exist.
+        
+        >>> self.readRMAExpression('')
+        None
+        >>> len(self.readRMAExpression('AU565'))
+        244
         """
-        # read data
+        # Read data
         inf = open('data/GDSC_RNA_expression.csv')
         lines = inf.readlines()
         inf.close()
@@ -38,31 +42,46 @@ class CellLineRMAExpression:
                 genes = lineList[1:]
                 break
         
-        # Convert strings to floats                
-        for j in range(len(genes)):
-            genes[j] = float(genes[j])
+        if genes:
+            # Convert strings to floats                
+            for j in range(len(genes)):
+                genes[j] = float(genes[j])
         
         return genes
     
     def cancerType(self, cellLine: str) -> str:
         """Return the name of the cancer type for a given cell line.
         
-        parameters: 
-        cellLine: String containing the name of a cell line.
+        Assumption: cellLine exists.
         
-        returns:
-        cancer: String containing the name of the type of cancer with 
-        which the cell line is associated.
+        :param cellLine: String containing the name of a cell line.
+        
+        :return: String containing the name of the type of cancer with 
+        which the cell line is associated, or None if cellLine doesn't exist.
+        
+        >>> self.cancerType('AU565')
+        BRCA
+        >>> self.cancerType('')
+        None        
         """
+        # Extract data 
         data = []
         with open("data/GDSC_metadata.csv") as f:
           for line in f:
             line_n = line.rstrip('\n')
             data.append(line_n.split(',')[1:])
-        data.pop(0)
+        data.pop(0) #remove titles
+        
+        # Transform data 
         metadata = np.array(data)
+        
+        # Find cell line 
         location = np.where(metadata.T[0] == cellLine)
         cancer = metadata.T[2][location]
-        cancer = cancer[0]
+        
+        if len(cancer) >= 1:
+            cancer = cancer[0]
+        else:
+            cancer = None
         return cancer
         

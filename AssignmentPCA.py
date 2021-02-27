@@ -49,6 +49,16 @@ class AssignmentPCA:
     
     def cumulativeMovingAverage(self, x: list) -> list:
         """Return a list of the cumulative moving average of input parameterlist x.
+        
+        Assumption: x contains numbers or is empty.
+        
+        :param x: list of numbers.
+        :return: list of float cumulative moving averages.
+        
+        >>> self.cumulativeMovingAverage([1, 3, 5, 11, 0, 4])
+        [1.0, 2.0, 3.0, 5.0, 4.0, 4.0]
+        >>> self.cumulativeMovingAverage([])
+        []
         """
         N = len(x)
         C = [0] * (N + 1)
@@ -63,9 +73,10 @@ class AssignmentPCA:
     def plotCumulativeMovingAverage(self, x: list, title: str = "Cumulative moving average") -> None:
         """Plot the cumulative moving average of a list x
         
-        parameters:
-        x: list of parameters to be plotted.
-        title: string containing a title for the graph.
+        Assumption: x contains numbers or is empty.
+            
+        :param x: List of parameters to be calculated moving average of and plotted.
+        :param title: string containing a title for the graph.
         """
         C = self.cumulativeMovingAverage(x)
         plt.plot(C)
@@ -76,6 +87,19 @@ class AssignmentPCA:
         
     def covariance(self, param1: list, param2: list) -> float:
         """Return the covariance of parameter lists param1 and param2.        
+        
+        Assumption: param1 and param2 contain numbers and are of equal length.
+        
+        :param param1: List of parameters to be compared.
+        :param param2: List of parameters to compare with .
+        :return: covariance of param1 and param2.
+        
+        >>> self.covariance([1, 3, 5, 11, 0, 4], [2, 6, 2, 78, 1, 4])
+        106.4
+        >>> self.covariance([1], [1, 2])
+        Traceback (most recent call last):
+            ...
+        AssertionError: Parameter lists must be of the same length.    
         """
         assert len(param1) == len(param2), "Parameter lists must be of the same length."
         
@@ -96,4 +120,3 @@ class AssignmentPCA:
         
         return covar
         
-    

@@ -139,13 +139,15 @@ plt.show()
 def calcLoads(n: int, eigpairs: list, varNames: list) -> list:
     """Calculate the loads of the variables on given PC.
     
-    parameters: 
-    n: PC number (starting at 1)
-    eigpairs: Sorted list (high-low) containing tuples of (eigVal, eigVec)
-    varNames: list containing strings of the variable names in the same order as eigpairs.
+    Assumptions: 
+    * PC number is in range 
+    * eigpairs and varNames have the same length
+    * eigpairs and varNames are not empty
     
-    returns: 
-    loadings: List of (load, varName) tuples, sorted with highest load first.
+    :param n: PC number (starting at 1).
+    :param eigpairs: Sorted list (high-low) containing tuples of (eigVal, eigVec).
+    :param varNames: List containing strings of the variable names in the same order as eigpairs.
+    :return: List of (load, varName) tuples, sorted with highest load first.
     """
     k = n - 1
     loadings = eigpairs[k][1] * sqrt(eigpairs[k][0])
@@ -157,7 +159,6 @@ def calcLoads(n: int, eigpairs: list, varNames: list) -> list:
 loadPairsPC1 = calcLoads(1, eigPairs, genes)
 loadPairsPC2 = calcLoads(2, eigPairs, genes)
 loadPairsPC3 = calcLoads(3, eigPairs, genes)
-
 
 # Split loads and genes for plotting
 loadPC1 = []
