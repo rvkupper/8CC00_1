@@ -72,20 +72,19 @@ class AssignmentPCA:
     def covariance(self, param1: list, param2: list) -> list:
         """return the covariance of parameters on param1 and param2.
         """
+        assert len(param1) == len(param2), "Parameter lists must be of the same length."
+        
         n = len(param1)
         
         mean1 = np.mean(param1)
         mean2 = np.mean(param2)
-        print(mean1)
-        
+                
         arr1 = np.array(param1)
         arr2 = np.array(param2)
-        print(arr1)
-        
+                
         arr1_diff = arr1 - mean1
         arr2_diff = arr2 - mean2
-        print(arr1_diff)
-        
+                
         multiplied = arr1_diff * arr2_diff
         sumMultiplied = sum(multiplied)
         covar = sumMultiplied/(n - 1.0)
