@@ -5,7 +5,7 @@ import numpy as np
 
 
 class CellLineRMAExpression:
-    """class for analysis of cancer data.
+    """Class for analysis of cancer cell data.
     """
     
     # instance variables
@@ -13,13 +13,13 @@ class CellLineRMAExpression:
         self.type = type
         
     def readRMAExpression(self, cellLine: str) -> list:
-        """read the RMA expression of a single cell line cellLine
+        """Read the RMA expression of a single cell line cellLine
         
         parameters:
-        cellLine: cell line from which the RMA expression is to be read 
+        cellLine: String, cell line from which the RMA expression is to be read 
         
         returns:
-        genes: list of all 244 genes of cellLine.
+        genes: list of RMA expressions of all 244 genes of cellLine.
         """
         # read data
         inf = open('data/GDSC_RNA_expression.csv')
@@ -45,7 +45,14 @@ class CellLineRMAExpression:
         return genes
     
     def cancerType(self, cellLine: str) -> str:
-        """return the name of the cancer type for a given cell line.
+        """Return the name of the cancer type for a given cell line.
+        
+        parameters: 
+        cellLine: String containing the name of a cell line.
+        
+        returns:
+        cancer: String containing the name of the type of cancer with 
+        which the cell line is associated.
         """
         data = []
         with open("data/GDSC_metadata.csv") as f:

@@ -34,7 +34,7 @@ class AssignmentPCA:
         self.listOfCellLineNames = listOfCellLineNames
     
     def readRMAExpressionAssigned(self) -> list:
-        """return a list of RMA expression values of assigned cell lines stored 
+        """Return a list of RMA expression values of assigned cell lines stored 
         in self.listOfCellLineNumbers.
         """
         
@@ -48,7 +48,7 @@ class AssignmentPCA:
         return rmaExpressions
     
     def cumulativeMovingAverage(self, x: list) -> list:
-        """return a list of the cumulative moving average of input parameterlist x.
+        """Return a list of the cumulative moving average of input parameterlist x.
         """
         N = len(x)
         C = [0] * (N + 1)
@@ -61,16 +61,21 @@ class AssignmentPCA:
         return C   
         
     def plotCumulativeMovingAverage(self, x: list, title: str = "Cumulative moving average") -> None:
-        """plot the cumulative moving average of a list x
+        """Plot the cumulative moving average of a list x
+        
+        parameters:
+        x: list of parameters to be plotted.
+        title: string containing a title for the graph.
         """
-        plt.plot(x)
+        C = self.cumulativeMovingAverage(x)
+        plt.plot(C)
         plt.xlabel('index')
         plt.ylabel('cumulative moving average')
         plt.title(title)
         plt.show()
         
-    def covariance(self, param1: list, param2: list) -> list:
-        """return the covariance of parameters on param1 and param2.
+    def covariance(self, param1: list, param2: list) -> float:
+        """Return the covariance of parameter lists param1 and param2.        
         """
         assert len(param1) == len(param2), "Parameter lists must be of the same length."
         
