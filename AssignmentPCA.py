@@ -1,4 +1,4 @@
-"""Principal Component Analysis
+"""Principal Component Analysis tools
 """
 
 import CellLineRMAExpression as clre

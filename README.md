@@ -6,4 +6,4 @@ This repository contains the following code files:
 * AssignmentPCA.py
 * main.py
 
-In the folder "data" the data for this assignment can be found.
+In the folder "data" the data for this assignment can be found. In the folder "docs" >> "build" >> "html" >> "index.html" the documentation of the code can be found.
