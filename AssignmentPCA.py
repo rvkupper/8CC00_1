@@ -5,6 +5,7 @@ import CellLineRMAExpression as clre
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 import numpy as np
+from math import sqrt
 
 class AssignmentPCA:
     """Class for principal component analysis of the CellLineRMAExpression data.
@@ -120,3 +121,22 @@ class AssignmentPCA:
         
         return covar
         
+    def calcLoads(self, n: int, eigpairs: list, varNames: list) -> list:
+        """Calculate the loads of the variables on given PC.
+        
+        Assumptions: 
+        * PC number is in range 
+        * eigpairs and varNames have the same length
+        * eigpairs and varNames are not empty
+        
+        :param n: PC number (starting at 1).
+        :param eigpairs: Sorted list (high-low) containing tuples of (eigVal, eigVec).
+        :param varNames: List containing strings of the variable names in the same order as eigpairs.
+        :return: List of (load, varName) tuples, sorted with highest load first.
+        """
+        k = n - 1
+        loadings = eigpairs[k][1] * sqrt(eigpairs[k][0])
+        loadingPairs = [(np.abs(np.real(loadings[i])), varNames[i]) for i in range(len(varNames))]
+        loadingPairs.sort(key=lambda x: x[0], reverse=True)
+        
+        return loadingPairs

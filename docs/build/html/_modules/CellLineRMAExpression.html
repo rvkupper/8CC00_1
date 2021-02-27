@@ -82,8 +82,11 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source Files</a></li>
+</ul>
+
             
           
         </div>
@@ -148,7 +151,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for CellLineRMAExpression</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Some text on this script (RMA = Rombust Multi-array Averages)</span>
+<span></span><span class="sd">&quot;&quot;&quot;Analysis of dataset. (RMA = Rombust Multi-array Averages)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -163,15 +166,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
         
 <div class="viewcode-block" id="CellLineRMAExpression.readRMAExpression"><a class="viewcode-back" href="../CellLineRMAExpression.html#CellLineRMAExpression.CellLineRMAExpression.readRMAExpression">[docs]</a>    <span class="k">def</span> <span class="nf">readRMAExpression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cellLine</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read the RMA expression of a single cell line cellLine</span>
+        <span class="sd">&quot;&quot;&quot;Read the RMA expression of a single cell line.</span>
 <span class="sd">        </span>
-<span class="sd">        parameters:</span>
-<span class="sd">        cellLine: String, cell line from which the RMA expression is to be read </span>
+<span class="sd">        Assumption: cellLine in dataset.</span>
 <span class="sd">        </span>
-<span class="sd">        returns:</span>
-<span class="sd">        genes: list of RMA expressions of all 244 genes of cellLine.</span>
+<span class="sd">        :param cellLine: String, cell line from which the RMA expression is to be read.</span>
+<span class="sd">        :return: list of RMA expressions of all 244 genes of cellLine, or None if cellLine does not exist.</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; self.readRMAExpression(&#39;&#39;)</span>
+<span class="sd">        None</span>
+<span class="sd">        &gt;&gt;&gt; len(self.readRMAExpression(&#39;AU565&#39;))</span>
+<span class="sd">        244</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># read data</span>
+        <span class="c1"># Read data</span>
         <span class="n">inf</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/GDSC_RNA_expression.csv&#39;</span><span class="p">)</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="n">inf</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
         <span class="n">inf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -188,32 +195,45 @@
                 <span class="n">genes</span> <span class="o">=</span> <span class="n">lineList</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
                 <span class="k">break</span>
         
-        <span class="c1"># Convert strings to floats                </span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genes</span><span class="p">)):</span>
-            <span class="n">genes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">genes</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">genes</span><span class="p">:</span>
+            <span class="c1"># Convert strings to floats                </span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genes</span><span class="p">)):</span>
+                <span class="n">genes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">genes</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
         
         <span class="k">return</span> <span class="n">genes</span></div>
     
 <div class="viewcode-block" id="CellLineRMAExpression.cancerType"><a class="viewcode-back" href="../CellLineRMAExpression.html#CellLineRMAExpression.CellLineRMAExpression.cancerType">[docs]</a>    <span class="k">def</span> <span class="nf">cancerType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cellLine</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Return the name of the cancer type for a given cell line.</span>
 <span class="sd">        </span>
-<span class="sd">        parameters: </span>
-<span class="sd">        cellLine: String containing the name of a cell line.</span>
+<span class="sd">        Assumption: cellLine exists.</span>
 <span class="sd">        </span>
-<span class="sd">        returns:</span>
-<span class="sd">        cancer: String containing the name of the type of cancer with </span>
-<span class="sd">        which the cell line is associated.</span>
+<span class="sd">        :param cellLine: String containing the name of a cell line.</span>
+<span class="sd">        :return: String containing the name of the type of cancer with which the cell line is associated, or None if cellLine doesn&#39;t exist.</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; self.cancerType(&#39;AU565&#39;)</span>
+<span class="sd">        BRCA</span>
+<span class="sd">        &gt;&gt;&gt; self.cancerType(&#39;&#39;)</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Extract data </span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/GDSC_metadata.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
           <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">line_n</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#remove titles</span>
+        
+        <span class="c1"># Transform data </span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        
+        <span class="c1"># Find cell line </span>
         <span class="n">location</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">cellLine</span><span class="p">)</span>
         <span class="n">cancer</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">location</span><span class="p">]</span>
-        <span class="n">cancer</span> <span class="o">=</span> <span class="n">cancer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">cancer</span> <span class="o">=</span> <span class="n">cancer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cancer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">cancer</span></div></div>
         
 </pre></div>

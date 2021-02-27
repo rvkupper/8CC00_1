@@ -1,5 +1,5 @@
 PCA module
-===========
+==========
 
 .. automodule:: AssignmentPCA
    :members:

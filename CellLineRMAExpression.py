@@ -1,4 +1,4 @@
-"""Some text on this script (RMA = Rombust Multi-array Averages)
+"""Analysis of dataset. (RMA = Rombust Multi-array Averages)
 """
 
 import numpy as np
@@ -55,14 +55,12 @@ class CellLineRMAExpression:
         Assumption: cellLine exists.
         
         :param cellLine: String containing the name of a cell line.
-        
-        :return: String containing the name of the type of cancer with 
-        which the cell line is associated, or None if cellLine doesn't exist.
+        :return: String containing the name of the type of cancer with which the cell line is associated, or None if cellLine doesn't exist.
         
         >>> self.cancerType('AU565')
         BRCA
         >>> self.cancerType('')
-        None        
+        None
         """
         # Extract data 
         data = []

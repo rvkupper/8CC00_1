@@ -37,7 +37,9 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="PCA module" href="AssignmentPCA.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,11 +84,16 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">cell line module</a></li>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Files</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AssignmentPCA.html">PCA module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cell line module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
-</div>
+</li>
+</ul>
+
             
           
         </div>
@@ -133,6 +140,8 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
+          <li><a href="modules.html">Source Files</a> &raquo;</li>
+        
       <li>cell line module</li>
     
     
@@ -152,9 +161,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cell-line-module">
-<h1>cell line module<a class="headerlink" href="#cell-line-module" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-CellLineRMAExpression"></span><p>Some text on this script (RMA = Rombust Multi-array Averages)</p>
+  <div class="section" id="module-CellLineRMAExpression">
+<span id="cell-line-module"></span><h1>cell line module<a class="headerlink" href="#module-CellLineRMAExpression" title="Permalink to this headline">¶</a></h1>
+<p>Analysis of dataset. (RMA = Rombust Multi-array Averages)</p>
 <dl class="py class">
 <dt id="CellLineRMAExpression.CellLineRMAExpression">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">CellLineRMAExpression.</span></code><code class="sig-name descname"><span class="pre">CellLineRMAExpression</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CellLineRMAExpression.html#CellLineRMAExpression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CellLineRMAExpression.CellLineRMAExpression" title="Permalink to this definition">¶</a></dt>
@@ -164,21 +173,42 @@
 <dt id="CellLineRMAExpression.CellLineRMAExpression.cancerType">
 <code class="sig-name descname"><span class="pre">cancerType</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellLine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="reference internal" href="_modules/CellLineRMAExpression.html#CellLineRMAExpression.cancerType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CellLineRMAExpression.CellLineRMAExpression.cancerType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the name of the cancer type for a given cell line.</p>
-<p>parameters: 
-cellLine: String containing the name of a cell line.</p>
-<p>returns:
-cancer: String containing the name of the type of cancer with 
-which the cell line is associated.</p>
+<p>Assumption: cellLine exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cellLine</strong> – String containing the name of a cell line.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>String containing the name of the type of cancer with which the cell line is associated, or None if cellLine doesn’t exist.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">cancerType</span><span class="p">(</span><span class="s1">&#39;AU565&#39;</span><span class="p">)</span>
+<span class="go">BRCA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">cancerType</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">None</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="CellLineRMAExpression.CellLineRMAExpression.readRMAExpression">
 <code class="sig-name descname"><span class="pre">readRMAExpression</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellLine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">list</span><a class="reference internal" href="_modules/CellLineRMAExpression.html#CellLineRMAExpression.readRMAExpression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CellLineRMAExpression.CellLineRMAExpression.readRMAExpression" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read the RMA expression of a single cell line cellLine</p>
-<p>parameters:
-cellLine: String, cell line from which the RMA expression is to be read</p>
-<p>returns:
-genes: list of RMA expressions of all 244 genes of cellLine.</p>
+<dd><p>Read the RMA expression of a single cell line.</p>
+<p>Assumption: cellLine in dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cellLine</strong> – String, cell line from which the RMA expression is to be read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of RMA expressions of all 244 genes of cellLine, or None if cellLine does not exist.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">readRMAExpression</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readRMAExpression</span><span class="p">(</span><span class="s1">&#39;AU565&#39;</span><span class="p">))</span>
+<span class="go">244</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -190,6 +220,10 @@ genes: list of RMA expressions of all 244 genes of cellLine.</p>
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="main.html" class="btn btn-neutral float-right" title="main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="AssignmentPCA.html" class="btn btn-neutral float-left" title="PCA module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
