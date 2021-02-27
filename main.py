@@ -138,7 +138,8 @@ plt.show()
 # Loading plots of top 50 genes 
 def calcLoads(n: int, eigpairs: list, varNames: list) -> list:
     """Calculate the loads of the variables on given PC.
-    variables: 
+    
+    parameters: 
     n: PC number (starting at 1)
     eigpairs: Sorted list (high-low) containing tuples of (eigVal, eigVec)
     varNames: list containing strings of the variable names in the same order as eigpairs.
