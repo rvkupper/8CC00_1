@@ -163,7 +163,19 @@
   <div class="section" id="module-main">
 <span id="main-module"></span><h1>main module<a class="headerlink" href="#module-main" title="Permalink to this headline">¶</a></h1>
 <p>Main file for PCA Analysis of cancer cell RNA expression of different genes.</p>
-<p>some text</p>
+<p>In this modules, the following steps were taken to perform PCA:</p>
+<ol class="arabic simple">
+<li><p>The data was read and converted to a np array.</p></li>
+<li><p>The covariance of the genes was calculated using the <code class="xref py py-func docutils literal notranslate"><span class="pre">covariance()</span></code> function from the <a class="reference internal" href="AssignmentPCA.html#module-AssignmentPCA" title="AssignmentPCA"><code class="xref py py-mod docutils literal notranslate"><span class="pre">AssignmentPCA</span></code></a> module.</p></li>
+<li><p>From this matrix, the eigenvalues and eigenvectors were calculated and sorted by relevance.</p></li>
+<li><p>The cumulative overall variance was then calculated.</p></li>
+<li><p>A bar graph of principal component contribution and a scree plot were created.</p></li>
+<li><p>It was decided to reduce to 3 dimensions.</p></li>
+<li><p>A new subspace with only 3 PC’s was created.</p></li>
+<li><p>A 2D and 3D principal component plot were generated.</p></li>
+<li><p>Loads for the three major PC’s were calculated using <code class="xref py py-func docutils literal notranslate"><span class="pre">calcLoads()</span></code> from <a class="reference internal" href="AssignmentPCA.html#module-AssignmentPCA" title="AssignmentPCA"><code class="xref py py-mod docutils literal notranslate"><span class="pre">AssignmentPCA</span></code></a>.</p></li>
+<li><p>For each of the three major PC’s, the 50 highest loads of the genes has been shown in a bar graph.</p></li>
+</ol>
 </div>
 
 
